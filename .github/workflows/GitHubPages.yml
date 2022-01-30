@@ -15,7 +15,7 @@ on:
 
 jobs:
   github_pages_publish:
-    name: "GitHub Pages Publish"
+    name: "Publish GitHub Pages"
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -37,9 +37,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: "OpenCCSharp.WebApp-Output"
-          path: ${{ env.OCCS_WEBAPP_OUTPUT_DIR }}/wwwroot
+          path: ${{ env.OCCS_WEBAPP_OUTPUT_DIR }}
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
           branch: gh-pages
-          folder: ${{ env.OCCS_WEBAPP_OUTPUT_DIR }}
+          folder: ${{ env.OCCS_WEBAPP_OUTPUT_DIR }}/wwwroot
