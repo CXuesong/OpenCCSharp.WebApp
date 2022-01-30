@@ -1,4 +1,5 @@
 ﻿@page "/fetchdata"
+@using OpenCCSharp.Presets
 @inject HttpClient Http
 
 <PageTitle>Weather forecast</PageTitle>
@@ -13,6 +14,7 @@
 }
 else
 {
+	<pre>@convertedText</pre>
     <table class="table">
         <thead>
             <tr>
@@ -39,9 +41,13 @@ else
 @code {
     private WeatherForecast[]? forecasts;
 
+	private string? convertedText;
+
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+	    var converter = await ChineseConversionPresets.GetConverterAsync(ChineseConversionVariant.Hans, ChineseConversionVariant.Hant);
+	    convertedText = converter.Convert("测试测试");
     }
 
     public class WeatherForecast
