@@ -1,7 +1,37 @@
 ﻿@page "/"
+@using Microsoft.Fast.Components.FluentUI;
 
-<PageTitle>Index</PageTitle>
+<PageTitle>繁简转换</PageTitle>
 
-<h1>如果你正在阅读这行文本</h1>
-
-请过几天再来看看。春节愉快！
+<h2>繁简转换</h2>
+<main>
+    <div class="input-row">
+        <div class="input-cell l1">
+            <FluentRadioGroup>
+                <label>从</label>
+                <FluentRadio Value="Hans">简体</FluentRadio>
+                <FluentRadio Value="Hant">OpenCC繁体</FluentRadio>
+                <FluentRadio Value="HK">香港繁体</FluentRadio>
+                <FluentRadio Value="TW">台湾正体</FluentRadio>
+                <FluentRadio Value="Hani">日本新字体</FluentRadio>
+            </FluentRadioGroup>
+        </div>
+        <div class="input-cell l2">
+            <FluentTextArea class="text-area" Placeholder="键入待转换的文本。" />
+        </div>
+        <div class="input-cell r1">
+            <FluentRadioGroup>
+                <label>到</label>
+                <FluentRadio Value="Hans">简体</FluentRadio>
+                <FluentRadio Value="Hant">OpenCC繁体</FluentRadio>
+                <FluentRadio Value="HK">香港繁体</FluentRadio>
+                <FluentRadio Value="TW">台湾正体</FluentRadio>
+                <FluentRadio Value="Hani">日本新字体</FluentRadio>
+            </FluentRadioGroup>
+        </div>
+        <div class="input-cell r2">
+            <FluentTextArea class="text-area" Readonly="true" />
+        </div>
+    </div>
+    <FluentButton Appearance="@Appearance.Accent">Click Me</FluentButton>
+</main>

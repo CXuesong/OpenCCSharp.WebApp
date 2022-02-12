@@ -1,0 +1,30 @@
+﻿.input-row {
+    display: grid;
+    grid: "l1 r1" auto
+          "l2 r2" 8em / 1fr 1fr;
+}
+
+.input-cell {
+    &.l1 {
+        grid-area: l1;
+    }
+
+    &.r1 {
+        grid-area: r1;
+    }
+
+    &.l2 {
+        grid-area: l2;
+    }
+
+    &.r2 {
+        grid-area: r2;
+    }
+
+    &.l2, &.r2 {
+        ::deep .text-area {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
