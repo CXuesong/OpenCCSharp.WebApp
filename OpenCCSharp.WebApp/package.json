@@ -10,6 +10,7 @@
   "scripts": {
     "lint": "eslint src --ext .js,.jsx,.ts,.svelte",
     "start": "webpack serve",
+    "build-managed": "pwsh -NonInteractive -File ./scripts/BuildManagedAssets.ps1",
     "build": "webpack --mode development",
     "build-prod": "webpack --mode production"
   },

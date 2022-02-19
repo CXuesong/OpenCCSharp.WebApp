@@ -10,15 +10,12 @@ public static class Program
 
     public static void Main()
     {
-        JS.Runtime.ConfigureJson(options =>
-            options.Converters.Add(new JsonStringEnumConverter())
-        );
     }
 
     [JSInvokable]
-    public static async Task<string> ConvertStringVariant(string str, ChineseConversionVariant fromVariant, ChineseConversionVariant toVariant)
+    public static async Task<string> ConvertStringVariant(string str, string fromVariant, string toVariant)
     {
-        var converter = await ChineseConversionPresets.GetConverterAsync(fromVariant, toVariant);
+        var converter = await ChineseConversionPresets.GetConverterAsync(Enum.Parse<ChineseConversionVariant>(fromVariant), Enum.Parse<ChineseConversionVariant>(toVariant));
         return converter.Convert(str);
     }
 

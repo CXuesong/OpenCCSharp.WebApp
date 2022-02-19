@@ -3,6 +3,7 @@ import CopyPlugin from "copy-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
+import SveltePreprocess from "svelte-preprocess";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import TerserPlugin from "terser-webpack-plugin";
 import webpack from "webpack";
@@ -39,6 +40,7 @@ export default async function config(env: Record<string, unknown>, argv: Record<
           use: {
             loader: "svelte-loader",
             options: {
+              preprocess: SveltePreprocess(),
               compilerOptions: {
                 dev: !isProduction,
               },
@@ -91,6 +93,7 @@ export default async function config(env: Record<string, unknown>, argv: Record<
         fs: false,
         child_process: false,
         src: path.resolve(__dirname, "src"),
+        managed: path.resolve(__dirname, "managed"),
       },
     },
     plugins: [

@@ -1,13 +1,20 @@
-<script>
-  export let name;
+<script lang="ts">
+  export let name: string = "";
+  let text = "Loading";
+  (async () => {
+    const { boot, OpenCCSharp } = await import("managed/dotnet");
+    await boot();
+    text = await OpenCCSharp.WebApp.Managed.ConvertStringVariant(
+      "测试",
+      "Hans",
+      "Hant"
+    );
+  })();
 </script>
 
 <main>
   <h1>Hello {name}!</h1>
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
+  <p>{text}</p>
 </main>
 
 <style>
