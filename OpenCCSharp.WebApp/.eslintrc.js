@@ -6,14 +6,13 @@ module.exports = {
   },
   extends: [
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
     "plugin:import/typescript",
-    "airbnb-base",
-    "airbnb-typescript/base",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: false,
     },
     ecmaVersion: 11,
     sourceType: "module",
@@ -34,6 +33,19 @@ module.exports = {
   ],
   settings: {
     "svelte3/typescript": true,
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+        // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
+        "project": [
+          "tsconfig.json",
+          "src/tsconfig.json",
+        ],
+      },
+    },
   },
   rules: {
     "@typescript-eslint/quotes": [
@@ -76,9 +88,6 @@ module.exports = {
         checkLoops: false,
       },
     ],
-    "no-await-in-loop": "off",
-    "no-param-reassign": "off",
-    // Overridden
     "no-mixed-operators": [
       "error",
       {
@@ -96,12 +105,6 @@ module.exports = {
         allowSamePrecedence: false,
       },
     ],
-    "@typescript-eslint/triple-slash-reference": "off",
-    "no-restricted-syntax": "off",
-    "class-methods-use-this": "off",
-    "max-classes-per-file": "off",
-    "no-plusplus": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
     // For svelte component props
     "import/no-mutable-exports": "off",
   },
