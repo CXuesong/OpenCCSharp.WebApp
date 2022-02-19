@@ -62,6 +62,24 @@ export default async function config(env: Record<string, unknown>, argv: Record<
           },
         },
         {
+          test: /\.css$/i,
+          use: [
+            // isRunAsDevServer ? "style-loader" : MiniCssExtractPlugin.loader,
+            { loader: MiniCssExtractPlugin.loader },
+            "@teamsupercell/typings-for-css-modules-loader",
+            // Translates CSS into CommonJS
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  localIdentName: isProduction ? "[hash:base64]" : "[path][name]__[local]",
+                  exportLocalsConvention: "camelCaseOnly",
+                },
+              },
+            },
+          ],
+        },
+        {
           test: /\.s[ac]ss$/i,
           use: [
             // isRunAsDevServer ? "style-loader" : MiniCssExtractPlugin.loader,

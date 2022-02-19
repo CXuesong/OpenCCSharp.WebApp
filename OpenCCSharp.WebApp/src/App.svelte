@@ -1,4 +1,5 @@
 <script lang="ts">
+  import "carbon-components-svelte/css/white.css";
   export let name: string = "";
   let text = "Loading";
   (async () => {
