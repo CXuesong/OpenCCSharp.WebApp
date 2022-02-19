@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "ES2020",
+        "moduleResolution": "Node",
+        "strict": true,
+        "noUnusedLocals": true,
+        "sourceMap": true,
+        "target": "ES2020",
+        "lib": [
+            "DOM",
+            "ES2020"
+        ],
+        "esModuleInterop": true,
+        "downlevelIteration": true,
+        "importHelpers": true,
+        "removeComments": false,
+        "baseUrl": ".."
+    }
+}

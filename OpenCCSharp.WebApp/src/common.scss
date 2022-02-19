@@ -1,0 +1,7 @@
+@mixin transition-default {
+    transition: 0.5s ease-out;
+}
+
+@mixin transition-slight {
+    transition: 0.1s ease-out;
+}
