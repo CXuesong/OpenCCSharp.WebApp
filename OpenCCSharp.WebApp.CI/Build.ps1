@@ -1,5 +1,7 @@
 param (
     [string]
+    $BaseUri = "/OpenCCSharp.WebApp/",
+    [string]
     $OutputDir = "_work/Publish"
 )
 trap {
@@ -38,5 +40,11 @@ CheckLastExitCode
 
 # Prepare for GitHub pages
 Copy-Item -Recurse $WebAppRoot/dist/* $OutputDir/
+
+# Rectify base URI
+$IndexContent = Get-Content $OutputDir/index.html
+$IndexContent = $OutputDir.Replace('<base href="/" />', "<base href=`"$BaseUri`" />")
+$IndexContent > $OutputDir/index.html
+
 # Allow files prefixed with underscore.
 New-Item $OutputDir/.nojekyll -ItemType File

@@ -64,18 +64,11 @@ export default async function config(env: Record<string, unknown>, argv: Record<
         },
         {
           // Allow importing plain css from node_modules
-          test: /[/\\]node_modules[/\\].+\.css$/i,
+          // and css files extracted from svelte components
+          test: /\.css$/i,
           use: [
             { loader: MiniCssExtractPlugin.loader },
-            { loader: "css-loader", },
-          ],
-        },
-        {
-          // css files extracted from svelte components
-          test: /.css$/i,
-          use: [
-            { loader: MiniCssExtractPlugin.loader },
-            { loader: "css-loader", },
+            { loader: "css-loader" },
           ],
         },
         {
