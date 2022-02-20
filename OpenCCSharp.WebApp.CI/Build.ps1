@@ -22,13 +22,13 @@ cd $WebAppRoot
 yarn install --frozen-lockfile
 CheckLastExitCode
 
-yarn lint
-CheckLastExitCode
-
 yarn build-managed
 CheckLastExitCode
 
 yarn build-prod
+CheckLastExitCode
+
+yarn lint
 CheckLastExitCode
 
 # Prepare for GitHub pages
