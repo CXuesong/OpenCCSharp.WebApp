@@ -21,7 +21,7 @@
   let isAboutDialogOpen = false;
 </script>
 
-<Header platformName="OpenCC#">
+<Header company="OpenCC#" platformName="WebApp">
   <svelte:fragment slot="skip-to-content">
     <SkipToContent />
   </svelte:fragment>
