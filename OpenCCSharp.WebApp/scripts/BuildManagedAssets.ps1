@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $ProjectDir = (Resolve-Path $PSScriptRoot/..).Path
-$ProjectManagedAssetsDir = (mkdir "$ProjectDir/managed" -Force).FullName
+$ProjectManagedAssetsDir = (New-Item -ItemType Directory "$ProjectDir/managed" -Force).FullName
 $ManagedProjectDir = (Resolve-Path $PSScriptRoot/../../OpenCCSharp.WebApp.Managed).Path
 
 Push-Location $ManagedProjectDir
@@ -11,6 +11,4 @@ if ($LASTEXITCODE) {
 }
 Pop-Location
 
-Write-Output $ManagedProjectDir
-Get-ChildItem $ManagedProjectDir/bin
 Copy-Item $ManagedProjectDir/bin/dotnet.* $ProjectManagedAssetsDir/ -Force
