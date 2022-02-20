@@ -66,9 +66,15 @@ export default async function config(env: Record<string, unknown>, argv: Record<
           // Allow importing plain css from node_modules
           test: /[/\\]node_modules[/\\].+\.css$/i,
           use: [
-            // isRunAsDevServer ? "style-loader" : MiniCssExtractPlugin.loader,
             { loader: MiniCssExtractPlugin.loader },
-            "@teamsupercell/typings-for-css-modules-loader",
+            { loader: "css-loader", },
+          ],
+        },
+        {
+          // css files extracted from svelte components
+          test: /.css$/i,
+          use: [
+            { loader: MiniCssExtractPlugin.loader },
             { loader: "css-loader", },
           ],
         },

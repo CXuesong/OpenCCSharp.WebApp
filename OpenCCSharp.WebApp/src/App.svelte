@@ -40,7 +40,7 @@
     const needSpinUpUpdatePromise = pendingUpdateParams == null;
     pendingUpdateParams = { inputVariant, inputText, outputVariant };
     if (!needSpinUpUpdatePromise) return;
-    (async () => {
+    void (async () => {
       while (pendingUpdateParams) {
         const delay = ((len) => {
           if (len < 512) return 100;

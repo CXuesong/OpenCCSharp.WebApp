@@ -31,7 +31,7 @@ jobs:
             6.0.x
       - name: Build
         shell: pwsh
-        run: "./OpenCCSharp.WebApp.CI/Build.ps1 -Configuration Release -OutputDir ${{ env.OCCS_WEBAPP_OUTPUT_DIR }}"
+        run: "./OpenCCSharp.WebApp.CI/Build.ps1 -OutputDir ${{ env.OCCS_WEBAPP_OUTPUT_DIR }}"
       - name: Upload build artifacts
         if: always()
         uses: actions/upload-artifact@v2
