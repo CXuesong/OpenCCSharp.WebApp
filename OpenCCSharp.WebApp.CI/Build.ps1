@@ -17,6 +17,11 @@ function CheckLastExitCode {
 
 $RepoRoot = (Resolve-Path $PSScriptRoot/..).Path
 $WebAppRoot = "$RepoRoot/OpenCCSharp.WebApp"
+$OutputDir = (New-Item -ItemType Directory $OutputDir -Force).FullName
+
+Write-Output "WebAppRoot = $WebAppRoot"
+Write-Output "OutputDir = $OutputDir"
+
 cd $WebAppRoot
 
 yarn install --frozen-lockfile
@@ -32,6 +37,6 @@ yarn lint
 CheckLastExitCode
 
 # Prepare for GitHub pages
-Copy-Item -Recurse $WebAppRoot/dist $OutputDir
+Copy-Item -Recurse $WebAppRoot/dist/* $OutputDir/
 # Allow files prefixed with underscore.
 New-Item $OutputDir/.nojekyll -ItemType File
