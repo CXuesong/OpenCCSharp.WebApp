@@ -108,5 +108,6 @@ module.exports = {
     // For svelte component props
     "import/no-mutable-exports": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-floating-promises": "error",
   },
 };

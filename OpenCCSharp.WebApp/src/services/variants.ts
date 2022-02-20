@@ -5,3 +5,5 @@ export const knownVariants = [
   { code: "HK", name: "香港繁体"},
   { code: "TW", name: "台湾正体"},
 ] as const;
+
+export type KnownVariantCode = (typeof knownVariants)[number]["code"];

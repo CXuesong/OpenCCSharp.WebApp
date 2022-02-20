@@ -6,7 +6,7 @@ export async function ensureInitialized() {
     case BootStatus.Standby:
       return bootPromise = (async () => {
         try {
-          boot();
+          await boot();
         } finally {
           bootPromise = undefined;
         }
@@ -20,7 +20,8 @@ export async function ensureInitialized() {
 
 export type ChineseConversionVariant = "Hans" | "Hant" | "Hani" | "HK" | "TW";
 
-export async function convert(str: string, from: ChineseConversionVariant, to: ChineseConversionVariant): Promise<string> {
+export async function convertVariant(str: string, from: ChineseConversionVariant, to: ChineseConversionVariant): Promise<string> {
+  await ensureInitialized();
   const { OpenCCSharp } = await import("managed/dotnet");
   return await OpenCCSharp.WebApp.Managed.ConvertStringVariant(str, from, to);
 }
