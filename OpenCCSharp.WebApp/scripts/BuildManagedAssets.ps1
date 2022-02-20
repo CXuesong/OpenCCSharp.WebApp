@@ -11,4 +11,6 @@ if ($LASTEXITCODE) {
 }
 Pop-Location
 
+Write-Output $ManagedProjectDir
+Get-ChildItem $ManagedProjectDir/bin
 Copy-Item $ManagedProjectDir/bin/dotnet.* $ProjectManagedAssetsDir/ -Force
