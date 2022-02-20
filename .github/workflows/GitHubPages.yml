@@ -43,4 +43,4 @@ jobs:
         if: github.event_name != 'pull_request'
         with:
           branch: gh-pages
-          folder: ${{ env.OCCS_WEBAPP_OUTPUT_DIR }}/wwwroot
+          folder: ${{ env.OCCS_WEBAPP_OUTPUT_DIR }}
