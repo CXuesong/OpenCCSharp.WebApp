@@ -43,7 +43,7 @@ Copy-Item -Recurse $WebAppRoot/dist/* $OutputDir/
 
 # Rectify base URI
 $IndexContent = Get-Content $OutputDir/index.html
-$IndexContent = $OutputDir.Replace('<base href="/" />', "<base href=`"$BaseUri`" />")
+$IndexContent = $IndexContent.Replace('<base href="/"', "<base href=`"$BaseUri`"")
 $IndexContent > $OutputDir/index.html
 
 # Allow files prefixed with underscore.
