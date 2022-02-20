@@ -40,6 +40,7 @@ export default async function config(env: Record<string, unknown>, argv: Record<
           use: {
             loader: "svelte-loader",
             options: {
+              // TODO https://github.com/carbon-design-system/carbon-preprocess-svelte
               preprocess: SveltePreprocess(),
               compilerOptions: {
                 dev: !isProduction,
@@ -62,21 +63,13 @@ export default async function config(env: Record<string, unknown>, argv: Record<
           },
         },
         {
-          test: /\.css$/i,
+          // Allow importing plain css from node_modules
+          test: /[/\\]node_modules[/\\].+\.css$/i,
           use: [
             // isRunAsDevServer ? "style-loader" : MiniCssExtractPlugin.loader,
             { loader: MiniCssExtractPlugin.loader },
             "@teamsupercell/typings-for-css-modules-loader",
-            // Translates CSS into CommonJS
-            {
-              loader: "css-loader",
-              options: {
-                modules: {
-                  localIdentName: isProduction ? "[hash:base64]" : "[path][name]__[local]",
-                  exportLocalsConvention: "camelCaseOnly",
-                },
-              },
-            },
+            { loader: "css-loader", },
           ],
         },
         {
@@ -112,6 +105,8 @@ export default async function config(env: Record<string, unknown>, argv: Record<
         child_process: false,
         src: path.resolve(__dirname, "src"),
         managed: path.resolve(__dirname, "managed"),
+        // https://github.com/carbon-design-system/carbon-components-svelte/issues/896
+        "carbon-components-svelte$": require.resolve("carbon-components-svelte/src/index"),
       },
     },
     plugins: [

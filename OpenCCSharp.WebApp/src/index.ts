@@ -1,4 +1,5 @@
 import "./index.scss";
+import "carbon-components-svelte/css/white.css";
 import type { } from "svelte";
 import App from "./App.svelte";
 
