@@ -12,7 +12,8 @@
     "start": "webpack serve",
     "build-managed": "pwsh -NonInteractive -File ./scripts/BuildManagedAssets.ps1",
     "build": "webpack --mode development",
-    "build-prod": "webpack --mode production"
+    "build-prod": "webpack --mode production",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@teamsupercell/typings-for-css-modules-loader": "^2.5.1",
@@ -24,7 +25,7 @@
     "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
-    "carbon-components-svelte": "^0.58.2",
+    "carbon-components-svelte": "^0.58.3",
     "carbon-icons-svelte": "^10.44.4",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.6.0",
@@ -35,6 +36,7 @@
     "fork-ts-checker-webpack-plugin": "^7.2.1",
     "gh-pages": "^3.2.3",
     "mini-css-extract-plugin": "^2.5.3",
+    "patch-package": "^6.4.7",
     "sass": "^1.49.8",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",

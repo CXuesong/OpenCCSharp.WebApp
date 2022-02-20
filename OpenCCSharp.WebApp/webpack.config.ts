@@ -68,7 +68,14 @@ export default async function config(env: Record<string, unknown>, argv: Record<
           test: /\.css$/i,
           use: [
             { loader: MiniCssExtractPlugin.loader },
-            { loader: "css-loader" },
+            {
+              loader: "css-loader",
+              options: {
+                sourceMap: true,
+                // https://github.com/sveltejs/svelte-loader#extracting-css
+                url: false,
+              }
+            }
           ],
         },
         {
@@ -81,6 +88,7 @@ export default async function config(env: Record<string, unknown>, argv: Record<
             {
               loader: "css-loader",
               options: {
+                sourceMap: true,
                 modules: {
                   localIdentName: isProduction ? "[hash:base64]" : "[path][name]__[local]",
                   exportLocalsConvention: "camelCaseOnly",

@@ -1,0 +1,14 @@
+diff --git a/node_modules/carbon-components-svelte/package.json b/node_modules/carbon-components-svelte/package.json
+index b708bff..4e21025 100644
+--- a/node_modules/carbon-components-svelte/package.json
++++ b/node_modules/carbon-components-svelte/package.json
+@@ -8,7 +8,8 @@
+   "module": "./lib/index.mjs",
+   "types": "./types/index.d.ts",
+   "sideEffects": [
+-    "css/*.css"
++    "css/*.css",
++    "*.svelte"
+   ],
+   "scripts": {
+     "test": "run-p test:*",
