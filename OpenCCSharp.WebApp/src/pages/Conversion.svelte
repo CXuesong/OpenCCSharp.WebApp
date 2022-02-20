@@ -43,6 +43,7 @@
   let inputVariant: KnownVariantCode = "Hans";
   let outputVariant: KnownVariantCode = "Hant";
   let outputText = "";
+  const variantPair = `${inputVariant} -> ${outputVariant}`;
   type SettledCovnersionState = { elapsed: number; error?: string };
   let conversionState: "converting" | SettledCovnersionState | undefined;
 
@@ -104,7 +105,7 @@
 <Grid padding>
   <Row>
     <Column>
-        <h1>字形转换</h1>
+      <h1>字形转换</h1>
     </Column>
   </Row>
   <Row>
@@ -120,6 +121,9 @@
           </Column>
           <Column lg={2} sm={4}>
             <div class="input-operations-cell">
+              <div>
+                <TooltipDefinition tooltipText="转换对">{variantPair}</TooltipDefinition>
+              </div>
               <Button kind="tertiary" icon={ArrowsHorizontal24} iconDescription="将转换结果送回输入区" on:click={onSwapInput} />
               <div class="conversion-status">
                 {#if conversionState === "converting"}
