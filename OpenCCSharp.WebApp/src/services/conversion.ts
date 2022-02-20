@@ -25,3 +25,9 @@ export async function convertVariant(str: string, from: ChineseConversionVariant
   const { OpenCCSharp } = await import("managed/dotnet");
   return await OpenCCSharp.WebApp.Managed.ConvertStringVariant(str, from, to);
 }
+
+export async function getManagedLibVersions(): Promise<Record<string, string>> {
+  await ensureInitialized();
+  const { OpenCCSharp } = await import("managed/dotnet");
+  return OpenCCSharp.WebApp.Managed.GetVersionNumbers();
+}

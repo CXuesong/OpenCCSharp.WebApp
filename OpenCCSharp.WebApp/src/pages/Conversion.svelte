@@ -27,7 +27,19 @@
 </style>
 
 <script lang="ts">
-  import { Button, Column, Dropdown, Grid, InlineLoading, InlineNotification, Row, TextArea, TooltipDefinition } from "carbon-components-svelte";
+  import {
+    Button,
+    Column,
+    Dropdown,
+    Grid,
+    InlineLoading,
+    InlineNotification,
+    ListItem,
+    Row,
+    TextArea,
+    TooltipDefinition,
+    UnorderedList,
+  } from "carbon-components-svelte";
   import ArrowsHorizontal24 from "carbon-icons-svelte/lib/ArrowsHorizontal24";
   import ErrorOutline16 from "carbon-icons-svelte/lib/ErrorOutline16";
   import Timer16 from "carbon-icons-svelte/lib/Timer16";
@@ -91,9 +103,12 @@
 
   $: updateOutput(inputVariant, inputText, outputVariant);
 
+  let libVersions: [string, string][] | undefined;
+
   onMount(async () => {
-    const { ensureInitialized } = await import("src/services/conversion");
+    const { ensureInitialized, getManagedLibVersions } = await import("src/services/conversion");
     await ensureInitialized();
+    libVersions = Object.entries(await getManagedLibVersions());
   });
 
   function onSwapInput() {
@@ -127,7 +142,7 @@
               <Button kind="tertiary" icon={ArrowsHorizontal24} iconDescription="将转换结果送回输入区" on:click={onSwapInput} />
               <div class="conversion-status">
                 {#if conversionState === "converting"}
-                  <InlineLoading description="转换中" />
+                  <InlineLoading description="转换中……" />
                 {:else if conversionState}
                   {#if conversionState.error}
                     <ErrorOutline16 />
@@ -149,6 +164,20 @@
           </Column>
         </Row>
       </Grid>
+    </Column>
+  </Row>
+  <Row>
+    <Column>
+      <h5>托管库版本</h5>
+      {#if libVersions}
+        <UnorderedList>
+          {#each libVersions as [name, version]}
+            <ListItem>{name} - {version}</ListItem>
+          {/each}
+        </UnorderedList>
+      {:else}
+        <InlineLoading description="正在初始化……" />
+      {/if}
     </Column>
   </Row>
 </Grid>
