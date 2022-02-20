@@ -15,6 +15,10 @@
   import LogoGithub20 from "carbon-icons-svelte/lib/LogoGithub20";
   import Help20 from "carbon-icons-svelte/lib/Help20";
   import Conversion from "src/pages/Conversion.svelte";
+  import About from "./About.svelte";
+
+  let isHelpMenuOpen = false;
+  let isAboutDialogOpen = false;
 </script>
 
 <Header platformName="OpenCC#">
@@ -32,12 +36,16 @@
         <HeaderPanelLink href="https://github.com/BYVoid/opencc-web">BYVoid/opencc-web</HeaderPanelLink>
       </HeaderPanelLinks>
     </HeaderAction>
-    <HeaderAction icon={Help20} text="帮助">
+    <HeaderAction icon={Help20} text="帮助" bind:isOpen={isHelpMenuOpen}>
       <HeaderPanelLinks>
         <HeaderPanelDivider>OpenCC# 网页应用</HeaderPanelDivider>
         <HeaderPanelLink href="https://github.com/CXuesong/OpenCCSharp.WebApp/issues">意见反馈</HeaderPanelLink>
+        <HeaderPanelLink on:click={() => {
+          isAboutDialogOpen = true;
+          isHelpMenuOpen = false;
+        }}>关于此应用</HeaderPanelLink>
         <HeaderPanelDivider>OpenCC （原版）网页应用</HeaderPanelDivider>
-        <HeaderPanelLink href="http://opencc.byvoid.com/">開放中文轉換 (Open Chinese Convert)</HeaderPanelLink>
+        <HeaderPanelLink href="https://opencc.byvoid.com/">開放中文轉換 (Open Chinese Convert)</HeaderPanelLink>
       </HeaderPanelLinks>
     </HeaderAction>
   </HeaderUtilities>
@@ -46,3 +54,5 @@
 <Content>
   <Conversion />
 </Content>
+
+<About bind:open={isAboutDialogOpen} />
