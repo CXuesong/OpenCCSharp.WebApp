@@ -23,6 +23,7 @@
 
   .conversion-status {
     vertical-align: middle;
+    min-height: 2em;
   }
 </style>
 
