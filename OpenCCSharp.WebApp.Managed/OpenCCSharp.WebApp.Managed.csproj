@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetJS" Version="0.8.0" />
-    <PackageReference Include="CXuesong.OpenCCSharp.Conversion" Version="0.0.1-int.2" />
-    <PackageReference Include="CXuesong.OpenCCSharp.Presets" Version="0.0.1-int.3" />
+    <PackageReference Include="CXuesong.OpenCCSharp.Conversion" Version="0.0.1-int.4" />
+    <PackageReference Include="CXuesong.OpenCCSharp.Presets" Version="0.0.1-int.4" />
   </ItemGroup>
 
 </Project>
