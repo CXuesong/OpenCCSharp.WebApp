@@ -6,3 +6,13 @@ declare module "*.scss" {
   const classNames: Record<string, string>;
   export default classNames;
 }
+
+declare interface PerformanceMemory {
+  readonly jsHeapSizeLimit: number;
+  readonly totalJSHeapSize: number;
+  readonly usedJSHeapSize: number;
+}
+
+declare interface Performance {
+  readonly memory?: PerformanceMemory;
+}

@@ -120,6 +120,20 @@
     inputText = outputText;
     [inputVariant, outputVariant] = [outputVariant, inputVariant];
   }
+
+  let memoryUsage: string | undefined;
+  function refreshMemoryUsage() {
+    function formatSize(bytes: number): string {
+      return  `${Math.round((bytes / 1024 / 1024) * 10) / 10} MB`;
+    }
+    memoryUsage = `${formatSize(performance.memory!.usedJSHeapSize)} （${formatSize(performance.memory!.totalJSHeapSize)}）`;
+  }
+  if (performance.memory?.usedJSHeapSize != null) {
+    refreshMemoryUsage();
+    window.setInterval(() => {
+      refreshMemoryUsage();
+    }, 2000);
+  }
 </script>
 
 <Grid padding>
@@ -175,7 +189,7 @@
     </Column>
   </Row>
   <Row>
-    <Column>
+    <Column lg={4} sm={4}>
       <h5>托管库版本</h5>
       {#if libVersions}
         <UnorderedList>
@@ -185,6 +199,16 @@
         </UnorderedList>
       {:else}
         <InlineLoading description="正在初始化……" />
+      {/if}
+    </Column>
+    <Column lg={4} sm={4}>
+      <h5>内存用量</h5>
+      {#if memoryUsage == null}
+        <p>未知</p>
+      {:else}
+        <UnorderedList>
+          <ListItem>{memoryUsage}</ListItem>
+        </UnorderedList>
       {/if}
     </Column>
   </Row>
