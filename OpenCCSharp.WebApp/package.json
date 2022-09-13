@@ -18,15 +18,15 @@
   "devDependencies": {
     "@teamsupercell/typings-for-css-modules-loader": "^2.5.1",
     "@types/eslint": "^8.4.6",
-    "@types/lodash": "^4.14.184",
-    "@types/node": "^18.7.16",
-    "@typescript-eslint/eslint-plugin": "^5.36.2",
-    "@typescript-eslint/parser": "^5.36.2",
+    "@types/lodash": "^4.14.185",
+    "@types/node": "^18.7.17",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
     "carbon-components-svelte": "^0.70.6",
     "carbon-icons-svelte": "^11.2.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
-    "eslint": "^8.23.0",
+    "eslint": "^8.23.1",
     "eslint-import-resolver-typescript": "^3.5.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-svelte3": "^4.0.0",
@@ -48,7 +48,7 @@
     "webpack-dev-server": "^4.11.0"
   },
   "dependencies": {
-    "classnames": "^2.3.1",
+    "classnames": "^2.3.2",
     "lodash": "^4.17.21",
     "tslib": "^2.4.0"
   },

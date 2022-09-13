@@ -41,9 +41,9 @@
     TooltipDefinition,
     UnorderedList,
   } from "carbon-components-svelte";
-  import ArrowsHorizontal24 from "carbon-icons-svelte/lib/ArrowsHorizontal24";
-  import ErrorOutline16 from "carbon-icons-svelte/lib/ErrorOutline16";
-  import Timer16 from "carbon-icons-svelte/lib/Timer16";
+  import ArrowsHorizontal from "carbon-icons-svelte/lib/ArrowsHorizontal.svelte";
+  import ErrorOutline from "carbon-icons-svelte/lib/ErrorOutline.svelte";
+  import Timer from "carbon-icons-svelte/lib/Timer.svelte";
   import { KnownVariantCode, knownVariants } from "src/services/variants";
   import { onMount } from "svelte";
 
@@ -111,9 +111,14 @@
   let libVersions: [string, string][] | undefined;
 
   onMount(async () => {
-    const { ensureInitialized, getManagedLibVersions } = await import("src/services/conversion");
-    await ensureInitialized();
-    libVersions = Object.entries(await getManagedLibVersions());
+    try {
+      const { ensureInitialized, getManagedLibVersions } = await import("src/services/conversion");
+      await ensureInitialized();
+      const versionMap = await getManagedLibVersions();
+      libVersions = Object.entries(versionMap);
+    } catch (err) {
+      conversionState = { elapsed: 0, error: String(err) };
+    }
   });
 
   function onSwapInput() {
@@ -124,7 +129,7 @@
   let memoryUsage: string | undefined;
   function refreshMemoryUsage() {
     function formatSize(bytes: number): string {
-      return  `${Math.round((bytes / 1024 / 1024) * 10) / 10} MB`;
+      return `${Math.round((bytes / 1024 / 1024) * 10) / 10} MB`;
     }
     memoryUsage = `${formatSize(performance.memory!.usedJSHeapSize)} （${formatSize(performance.memory!.totalJSHeapSize)}）`;
   }
@@ -158,15 +163,15 @@
               <div>
                 <TooltipDefinition tooltipText="转换对">{variantPair}</TooltipDefinition>
               </div>
-              <Button kind="tertiary" icon={ArrowsHorizontal24} iconDescription="将转换结果送回输入区" on:click={onSwapInput} />
+              <Button kind="tertiary" icon={ArrowsHorizontal} iconDescription="将转换结果送回输入区" on:click={onSwapInput} />
               <div class="conversion-status">
                 {#if conversionState === "converting"}
                   <InlineLoading description="转换中" />
                 {:else if conversionState}
                   {#if conversionState.error}
-                    <ErrorOutline16 />
+                    <ErrorOutline size={16} />
                   {:else}
-                    <Timer16 />
+                    <Timer size={16} />
                   {/if}
                   <TooltipDefinition tooltipText="转换用时">{conversionState.elapsed}ms</TooltipDefinition>
                 {/if}
@@ -189,6 +194,7 @@
     </Column>
   </Row>
   <Row>
+    <Column lg={2} sm={4} />
     <Column lg={4} sm={4}>
       <h5>托管库版本</h5>
       {#if libVersions}
@@ -201,6 +207,7 @@
         <InlineLoading description="正在初始化……" />
       {/if}
     </Column>
+    <Column lg={4} sm={4} />
     <Column lg={4} sm={4}>
       <h5>内存用量</h5>
       {#if memoryUsage == null}

@@ -37,5 +37,6 @@ export async function isVariantConversionSupported(from: ChineseConversionVarian
 export async function getManagedLibVersions(): Promise<Record<string, string>> {
   await ensureInitialized();
   const { OpenCCSharp } = await import("managed/dotnet");
-  return OpenCCSharp.WebApp.Managed.GetVersionNumbers();
+  // HACK Dictionary<> is incorrectedly mapped to Map<> (should be Record).
+  return OpenCCSharp.WebApp.Managed.GetVersionNumbers() as unknown as Record<string, string>;
 }

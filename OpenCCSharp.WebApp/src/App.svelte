@@ -12,8 +12,8 @@
     HeaderUtilities,
     SkipToContent,
   } from "carbon-components-svelte";
-  import LogoGithub20 from "carbon-icons-svelte/lib/LogoGithub20";
-  import Help20 from "carbon-icons-svelte/lib/Help20";
+  import LogoGithub from "carbon-icons-svelte/lib/LogoGithub.svelte";
+  import Help from "carbon-icons-svelte/lib/Help.svelte";
   import Conversion from "src/pages/Conversion.svelte";
   import About from "./About.svelte";
 
@@ -26,7 +26,7 @@
     <SkipToContent />
   </svelte:fragment>
   <HeaderUtilities>
-    <HeaderAction icon={LogoGithub20} text="GitHub">
+    <HeaderAction icon={LogoGithub} text="GitHub">
       <HeaderPanelLinks>
         <HeaderPanelDivider>您在此处</HeaderPanelDivider>
         <HeaderPanelLink href="https://github.com/CXuesong/OpenCCSharp.WebApp">CXuesong/OpenCCSharp.WebApp</HeaderPanelLink>
@@ -37,7 +37,7 @@
         <HeaderPanelLink href="https://github.com/BYVoid/opencc-web">BYVoid/opencc-web</HeaderPanelLink>
       </HeaderPanelLinks>
     </HeaderAction>
-    <HeaderAction icon={Help20} text="帮助" bind:isOpen={isHelpMenuOpen}>
+    <HeaderAction icon={Help} text="帮助" bind:isOpen={isHelpMenuOpen}>
       <HeaderPanelLinks>
         <HeaderPanelDivider>OpenCC# 网页应用</HeaderPanelDivider>
         <HeaderPanelLink href="https://github.com/CXuesong/OpenCCSharp.WebApp/issues">意见反馈</HeaderPanelLink>
