@@ -1,0 +1,14 @@
+diff --git a/package.json b/package.json
+index 30a5f038723bba4cb38d749da467a12f80084c27..0f2a92288eddb486c72e0dd1869ffea795c587b8 100644
+--- a/package.json
++++ b/package.json
+@@ -8,7 +8,8 @@
+   "module": "./lib/index.mjs",
+   "types": "./types/index.d.ts",
+   "sideEffects": [
+-    "css/*.css"
++    "css/*.css",
++    "*.svelte"
+   ],
+   "scripts": {
+     "test:types": "svelte-check --workspace tests",

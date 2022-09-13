@@ -12,8 +12,7 @@
     "start": "webpack serve",
     "build-managed": "pwsh -NonInteractive -File ./scripts/BuildManagedAssets.ps1",
     "build": "webpack --mode development",
-    "build-prod": "webpack --mode production",
-    "postinstall": "patch-package"
+    "build-prod": "webpack --mode production"
   },
   "devDependencies": {
     "@teamsupercell/typings-for-css-modules-loader": "^2.5.1",
@@ -33,7 +32,6 @@
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "gh-pages": "^4.0.0",
     "mini-css-extract-plugin": "^2.6.1",
-    "patch-package": "^6.4.7",
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
@@ -52,5 +50,8 @@
     "lodash": "^4.17.21",
     "tslib": "^2.4.0"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "yarn@3.2.3",
+  "resolutions": {
+    "carbon-components-svelte@^0.70.6": "patch:carbon-components-svelte@npm%3A0.70.6#./.yarn/patches/carbon-components-svelte-npm-0.70.6-31891356ac.patch"
+  }
 }
